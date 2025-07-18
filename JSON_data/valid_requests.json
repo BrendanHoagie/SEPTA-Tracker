@@ -1,0 +1,101 @@
+{
+    "regional_rail_arrivals":
+    {
+        "url": "Arrivals/index.php",
+        "required_parameters": [
+            "station_name"           
+        ],
+        "optional_parameters": [
+            "num_results_to_show",
+            "direction_N_or_S"
+        ]
+    },
+    "list_all_regional_rail_trains":
+    {
+        "url": "TrainView/index.php",
+        "required_parameters": [],
+        "optional_parameters": []
+    },
+    "next_to_arrive":
+    {
+        "url": "NextToArrive/index.php",
+        "required_parameters": [
+            "starting_station_name",
+            "ending_station_name"
+        ],
+        "optional_parameters": [
+            "num_results_to_show"
+        ]
+    },
+    "trolley_location_by_route":
+    {
+        "url": "TransitView/index.php",
+        "required_parameters": [
+            "route_number"
+        ],
+        "optional_parameters": []
+    },
+    "all_trolley_location":
+    {
+        "url": "TransitViewAll/index.php",
+        "required_parameters": [],
+        "optional_parameters": []
+    },
+    "trolley_detours":
+    {
+        "url": "BusDetours/index.php",
+        "required_parameters": [],
+        "optional_parameters": [
+            "route_number"
+        ]
+    },
+    "regional_rail_schedules":
+    {
+        "url": "RRSchedules/index.php",
+        "required_parameters": [
+            "train_number"
+        ],
+        "optional_parameters": []
+    },
+    "trolley_schedules":
+    {
+        "url": "BusSchedules/index.php",
+        "required_parameters": [
+            "stop_id"
+        ],
+        "optional_parameters": []
+    },
+    "trolley_schedules_as_sms":
+    {
+        "url": "sms/index.php",
+        "required_parameters": [
+            "stop_id"
+        ],
+        "optional_parameters": [
+            "route_number",
+            "gtfs_direction",
+            "on_or_after_date",
+            "on_or_after_time"
+        ]
+    },
+    "list_all_trolley_stops":
+    {
+        "url": "Stops/index.php",
+        "required_parameters": [
+            "route_number"
+        ],
+        "optional_parameters": []
+    },
+    "locations":
+    {
+        "url": "locations/get_locations.php",
+        "required_parameters": [
+            "longitude",
+            "latitude"
+        ],
+        "optional_parameters": [
+            "location_type",
+            "radius"
+        ]
+    }
+}

@@ -3,6 +3,7 @@ import requests
 import json
 
 
+_VALID_REQUESTS_PATH = "JSON_data/valid_requests.json"
 _VALID_REQUESTS = {}
 
 
@@ -15,9 +16,6 @@ def choose_request() -> Request:
     if not _VALID_REQUESTS:
         load_valid_requests()
 
-    for k, v in _VALID_REQUESTS.items():
-        print(f"{k}:\n{v}\n\n")
-
     requests = []
     while True:
         for i, request_name in enumerate(_VALID_REQUESTS):
@@ -25,19 +23,19 @@ def choose_request() -> Request:
             requests.append(request_name)
         try:
             choice = int(input(f"Enter a number 1-{i + 1}: ")) - 1
-            print(f"choice = {choice}")
             if choice < 0:
                 raise ValueError
             else:
-                return _VALID_REQUESTS[requests[i]]
+                return _VALID_REQUESTS[requests[choice]]
         except Exception:
             print("Unrecognized input, please try again")
 
 
 def load_valid_requests() -> None:
+    """Loads valid_requests.json into global data structure"""
     global _VALID_REQUESTS
 
-    with open("JSON_data/valid_requests.json", "r") as file:
+    with open(_VALID_REQUESTS_PATH, "r") as file:
         data = json.load(file)
         for request_name, items in data.items():
             req = Request()
@@ -52,3 +50,33 @@ def load_valid_requests() -> None:
                         for param in value:
                             req.add_optional_param(param)
             _VALID_REQUESTS[request_name] = req
+
+
+def construct_request(req: Request) -> None:
+    """Human-readable interface for making a GET request
+
+    Args
+        req: a Request object to be turned into a http get request
+    """
+    params = {}
+
+    print(f"creating GET request for {req.get_url(ext_only=False)}")
+    if requireds := req.get_required_params():
+        print("Required params:")
+        for param in requireds:
+            params[param] = input(f"\tEnter {param}: ")
+    if optionals := req.get_optional_params():
+        print("Optional params:")
+        for param in optionals:
+            params[param] = input(f"\tEnter {param}: ")
+    make_get_request(req, params)
+
+
+def make_get_request(req: Request, params: dict[str, str]) -> None:
+    try:
+        response = requests.get(req.get_url(ext_only=False), params=params)
+        response.raise_for_status()
+        data = response.json()
+        print(data)
+    except requests.exceptions.RequestException as e:
+        print(f"Caught the following error: {e}")

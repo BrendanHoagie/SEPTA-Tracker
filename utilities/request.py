@@ -9,8 +9,8 @@ class Request:
         optional_params: list[str] = None,
     ):
         self._url = url
-        self._required_params = required_params
-        self._optional_params = optional_params
+        self._required_params = [] if not required_params else required_params
+        self._optional_params = [] if not optional_params else optional_params
 
     def set_url(self, url: str) -> None:
         """Sets the internal url. This is the extension to the base url

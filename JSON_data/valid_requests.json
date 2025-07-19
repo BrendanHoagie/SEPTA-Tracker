@@ -3,11 +3,11 @@
     {
         "url": "Arrivals/index.php",
         "required_parameters": [
-            "station_name"           
+            "station"           
         ],
         "optional_parameters": [
-            "num_results_to_show",
-            "direction_N_or_S"
+            "results",
+            "direction"
         ]
     },
     "list_all_regional_rail_trains":
@@ -20,18 +20,18 @@
     {
         "url": "NextToArrive/index.php",
         "required_parameters": [
-            "starting_station_name",
-            "ending_station_name"
+            "req1",
+            "req2"
         ],
         "optional_parameters": [
-            "num_results_to_show"
+            "req3"
         ]
     },
     "trolley_location_by_route":
     {
         "url": "TransitView/index.php",
         "required_parameters": [
-            "route_number"
+            "route"
         ],
         "optional_parameters": []
     },
@@ -46,14 +46,14 @@
         "url": "BusDetours/index.php",
         "required_parameters": [],
         "optional_parameters": [
-            "route_number"
+            "req1"
         ]
     },
     "regional_rail_schedules":
     {
         "url": "RRSchedules/index.php",
         "required_parameters": [
-            "train_number"
+            "req1"
         ],
         "optional_parameters": []
     },
@@ -69,20 +69,20 @@
     {
         "url": "sms/index.php",
         "required_parameters": [
-            "stop_id"
+            "req1"
         ],
         "optional_parameters": [
-            "route_number",
-            "gtfs_direction",
-            "on_or_after_date",
-            "on_or_after_time"
+            "req2",
+            "req3",
+            "req4",
+            "req5"
         ]
     },
     "list_all_trolley_stops":
     {
         "url": "Stops/index.php",
         "required_parameters": [
-            "route_number"
+            "req1"
         ],
         "optional_parameters": []
     },
@@ -90,11 +90,11 @@
     {
         "url": "locations/get_locations.php",
         "required_parameters": [
-            "longitude",
-            "latitude"
+            "lon",
+            "lat"
         ],
         "optional_parameters": [
-            "location_type",
+            "type",
             "radius"
         ]
     }
